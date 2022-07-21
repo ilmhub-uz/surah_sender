@@ -4,7 +4,7 @@ namespace SurahSender.Services.MarcupHelper;
 
 public static class MarcupHelpers
 {
-    public static InlineKeyboardMarkup GetKeyboardMarkup(Dictionary<string, string> keys, int columns = 2)
+    public static InlineKeyboardMarkup GetKeyboardMarkup(Dictionary<string, string> keys, int columns)
     {
         int row = 0;
 

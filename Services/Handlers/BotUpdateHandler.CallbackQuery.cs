@@ -20,44 +20,23 @@ public partial class BotUpdateHandler
         var key = query.Data;
 
         _logger.LogInformation("Received CallbackQuery from {from.FirstName} : {query.Data}", query.From?.FirstName, query.Data);
-
-        var queryValue = query.Data;
   
-        _logger.LogInformation("button is {queryValue}", queryValue);
-
+        _logger.LogInformation("button is {queryValue}", key);
+        
         var handler = query.Data switch
         {
             "_audioQuran" => HandleAudioQuranAsync(botClient, query, cancellationToken),
             "_videoQuran" => HandleVideoQuranAsync(botClient, query, cancellationToken),
             "_textQuran" or "_arabBook" or "_uzBook" => HandleTextQuranAsync(botClient, query, cancellationToken),
             "_alphabet" => HandleAlphabetAsync(botClient, query, cancellationToken),
-            "Fotiha" => HandleFotihaAsync(botClient, query, cancellationToken, key),
+            _=> HandlerButtonAsync(botClient, query,cancellationToken, key),
             // _ =>  some code here
         };
 
         _logger.LogInformation("_sectionName is {_sectionName}", _sectionName);
-        _logger.LogInformation("reciter is {temp}", queryValue);
+        _logger.LogInformation("reciter is {temp}", key);
 
     }
-
-    private async Task HandleFotihaAsync(ITelegramBotClient botClient, CallbackQuery query, CancellationToken cancellationToken, string key)
-    {  
-        var item = _context.Qurans.First(q => q.Name == key);
-        var idOfMessage = item.IdOfMessage;
-
-        await botClient.SendTextMessageAsync(
-            query.Message.Chat.Id,
-            text: "Fotiha",
-            cancellationToken: cancellationToken);
-
-        await botClient.ForwardMessageAsync(
-            chatId: query.Message.Chat.Id,
-            fromChatId: -1001679802094,
-            (int)item.IdOfMessage,
-            cancellationToken: cancellationToken);
-
-    }
-
     private async Task HandleAudioQuranAsync(ITelegramBotClient botClient,
                                        CallbackQuery query,
                                        CancellationToken cancellationToken)
@@ -77,18 +56,17 @@ public partial class BotUpdateHandler
     {
         await botClient.SendTextMessageAsync(
          query.Message.Chat.Id,
-         text: "Qaysi qorining qiroatini tinglamoqchisiz?",
+         text: "",
          replyMarkup: MarcupHelpers.GetKeyboardMarkup(
             new Dictionary<string, string>
             {
-                {"Fotiha", "Fotiha"},
+                {"Fotiha", "001"},
                 {"Nas", "002"},
                 {"Ift", "003"},
                 {"Fotiha1", "004"},
                 {"Fotiha2", "005"},
 
-            }
-         ),
+            },5),
          cancellationToken: cancellationToken);
         _sectionName = query.Data;
         _logger.LogInformation("_sectionName is {_sectionName}", _sectionName);
