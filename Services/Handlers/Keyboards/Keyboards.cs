@@ -10,14 +10,14 @@ public partial class BotUpdateHandler
             // first row
         new []
         {
-            InlineKeyboardButton.WithCallbackData(text: "🎧  Audio Qur'on", callbackData: "_audioQuran"),
-            InlineKeyboardButton.WithCallbackData(text: "▶️  Video Qur'on", callbackData: "_videoQuran"),
+            InlineKeyboardButton.WithCallbackData(text: "🎧  Audio Qur'on", callbackData: "audio1_10"),
+            InlineKeyboardButton.WithCallbackData(text: "▶️  Video Qur'on", callbackData: "video1_10"),
         },
         // second row
         new []
         {
             InlineKeyboardButton.WithCallbackData(text: "📖 Qur'on matni", callbackData: "_textQuran"),
-            InlineKeyboardButton.WithCallbackData(text: "🔤  Arab Alifbosi", callbackData: "_alphabet"),
+            InlineKeyboardButton.WithCallbackData(text: "🔤  Arab Alifbosi", callbackData: "dars1_video_10"),
         },
     });
 
@@ -42,10 +42,13 @@ public partial class BotUpdateHandler
         new []
         {
             InlineKeyboardButton.WithCallbackData(text: "📖 Asl Qur'oni Karim", callbackData: "_arabBook"),
+            InlineKeyboardButton.WithCallbackData(text: "📖 Qur'oni Karim uzb tarjima", callbackData: "_uzBook"),
+
         },
         new []
         {
-            InlineKeyboardButton.WithCallbackData(text: "📖 Qur'oni Karim uzb tarjima", callbackData: "_uzBook"),
+            InlineKeyboardButton.WithCallbackData(text: "❌", callbackData: "deleted"),
+
         },
     });
 }

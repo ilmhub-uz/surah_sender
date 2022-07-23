@@ -25,4 +25,8 @@ public static class MarcupHelpers
 
     }
 
+    internal static IReplyMarkup? GetKeyboardMarkup(Dictionary<int, int> dictionary, int v)
+    {
+        throw new NotImplementedException();
+    }
 }
