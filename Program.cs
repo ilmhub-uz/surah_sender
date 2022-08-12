@@ -18,6 +18,7 @@ builder.Services.AddHostedService<BotBackgroundService>();
 // builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlite(data));  
 builder.Services.AddSingleton<AppDbContext>(x=>new AppDbContext(data));
 builder.Services.AddScoped<QuranService>();
+//for learn
 
 var app = builder.Build(); 
 
